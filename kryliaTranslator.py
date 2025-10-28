@@ -1,7 +1,7 @@
 import sys
 import re
 
-# Dictionary of your "con" language
+
 diction = {
     "what": "qhar",
     "like tunge": "poa",
@@ -13,13 +13,13 @@ diction = {
     "sqrt(-1)": "i"
 }
 
-# Ask for input
+# Make the program less self centred and be more outward
 input1 = input("Krylian to English: ")
 
-# Default suffix
+# initialise suffix
 suffix = ""
 
-# Check command-line arguments
+
 if len(sys.argv) > 1:
     if sys.argv[1] == "-blankstare":
         repeat_count = 1
@@ -27,22 +27,20 @@ if len(sys.argv) > 1:
             try:
                 repeat_count = int(sys.argv[2])
             except ValueError:
-                raise ValueError("Second argument must be an integer for repetition count")
+                raise ValueError("Why isn't it a integer?")
         suffix = ".,,.,." * repeat_count
 
     elif len(sys.argv) > 1:
         if len(sys.argv) > 2:
-            raise NameError("Cannot specify repetition without using -blankstare first")
+            raise NameError("use -blankstare first")
         # No suffix in this case
 
-# Apply all replacements using regex for exact word/phrase matches
+# Be REALLY careful with how the translator works
 for old_word, new_word in diction.items():
-    # Escape special regex characters in the phrase
     pattern = r'\b' + re.escape(old_word) + r'\b'
     input1 = re.sub(pattern, new_word, input1)
 
 # Add suffix once at the end
 input1 += suffix
-
 print(input1)
 
